@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f3f2ef;
+            --card-bg: #ffffff;
+            --primary-blue: #0a66c2;
+            --primary-blue-hover: #004182;
+            --text-dark: #000000e6;
+            --text-muted: #00000099;
+            --border-color: #e0dfdc;
+            --divider-color: #ebebeb;
+            --badge-bg: #eef3f8;
+            --badge-text: #000000e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-blue);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .navbar {
+            background-color: var(--card-bg);
+            height: 52px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 1128px;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-dark);
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 24px auto;
+            padding: 0 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-header {
+            padding: 24px 24px 0 24px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .card-body {
+            padding: 0 24px 24px 24px;
+        }
+
+        .profile-cover {
+            height: 200px;
+            background: linear-gradient(135deg, #a0b4c7 0%, #d9e2ec 100%);
+            position: relative;
+        }
+
+        .profile-img-container {
+            position: absolute;
+            bottom: -50px;
+            left: 24px;
+            width: 152px;
+            height: 152px;
+            border-radius: 50%;
+            border: 4px solid var(--card-bg);
+            background-color: #fff;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-img-container img {
+            width: 145px;
+            object-fit: cover;
+
+        }
+
+        .profile-info {
+            padding: 65px 24px 24px 24px;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        .profile-headline {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-top: 4px;
+        }
+
+        .profile-location {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: white;
+            display: inline-block;
+            border: none;
+            border-radius: 24px;
+            padding: 6px 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-blue-hover);
+        }
+
+        .text-content {
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: var(--text-dark);
+        }
+
+        .exp-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        .exp-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .exp-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--bg-color);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .exp-details h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .exp-details p.org {
+            font-size: 0.875rem;
+            color: var(--text-dark);
+        }
+
+        .exp-details p.desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .project-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media (min-width: 600px) {
+            .project-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .project-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .project-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            flex-grow: 1;
+        }
+
+        .project-tech {
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .badge {
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .digital-card {
+            text-align: center;
+            background: linear-gradient(180deg, var(--card-bg) 0%, #f9fafc 100%);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 6px 16px;
+            border-radius: 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: rgba(10, 102, 194, 0.1);
+            border-width: 2px;
+            padding: 5px 15px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo"><span style="color: var(--text-dark);">Portfol</span>io</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-container">
+
+        <section class="card">
+            <div class="profile-cover">
+                <img src="https://media.licdn.com/dms/image/v2/D4E16AQFIl8AAN_nPBA/profile-displaybackgroundimage-shrink_200_800/B4EZ_dgvEiIUAQ-/0/1786127774287?e=2147483647&v=beta&t=XYMe9f-JwVkLEpS4v8AQuQlD6pXbtfm3dg6jqrYEA5s"
+                    alt="">
+
+                <div class="profile-img-container">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj1FgYzkbRhVlZd1TkLghPGYbz9c4kko2mpagUsIIW8g&s"
+                        alt="Profile Picture">
+                </div>
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-name">Nexus</h1>
+                <p class="profile-headline">Web Development | DSA•C++ | Python | React</p>
+                <p class="profile-location">City, State, India · <a href="#contact">Contact info</a></p>
+                <a class="btn-primary" id="connectBtn"
+                    href="https://www.linkedin.com/in/hirakjyoti-kakaty-305319428?utm_source=share_via&utm_content=profile&utm_medium=member_android">Connect</a>
+            </div>
+        </section>
+
+        <section class="card" id="about">
+            <h2 class="card-header">About</h2>
+            <div class="card-body">
+                <p class="text-content">
+                    I am a first year B.Tech Computer Science and Engineering student with a strong passion for software
+                    development.
+                    <br><br>
+                    My goal is to build a long term career in tech by tackling complex problems and creating efficient,
+                    scalable solutions. I am currently focusing on strengthening my programming fundamentals.
+
+                </p>
+            </div>
+        </section>
+
+        <section class="card" id="experience">
+            <h2 class="card-header">Experience & Education</h2>
+            <div class="card-body">
+
+                <div class="exp-item">
+                    <div class="exp-icon">JS</div>
+                    <div class="exp-details">
+                        <h3>Advanced JavaScript & React</h3>
+                        <p class="org">Self Learned</p>
+                        <p class="desc">Deep dive into C++ memory management, object-oriented system design, and
+                            advanced data structures (Trees, Graphs, Dynamic Programming, Recursion).</p>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-icon">&lt;/&gt;</div>
+                    <div class="exp-details">
+                        <h3>DSA & C++</h3>
+                        <p class="org">Self Learned</p>
+                        <p class="desc"></p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="card" id="projects">
+            <h2 class="card-header">Featured Projects</h2>
+            <div class="card-body">
+                <div class="project-list">
+
+                    <div class="project-card">
+                        <h3 class="project-title">3D Interactive website</h3>
+                        <p class="project-desc">A visually stunning 3D interactive website built using spline. It
+                            features a interactive background that responds to cursor movement.</p>
+                        <p class="project-tech">Spline · CSS · JavaScript</p>
+                    </div>
+
+                    <div class="project-card">
+                        <h3 class="project-title">Bilingual Voice Assistant</h3>
+                        <p class="project-desc">An intelligent voice assistant script that seamlessly processes English
+                            voice commands and translates Hindi voice input, providing accurate auditory responses.</p>
+                        <p class="project-tech">Python · SpeechRecognition · TTS</p>
+                    </div>
+
+                    <div class="project-card">
+                        <h3 class="project-title">Weather app</h3>
+                        <p class="project-desc">A weather app is a software application that fetches and displays live
+                            meteorological data for any location using the OpenWeather API.</p>
+                        <p class="project-tech">Javascript · HTML · CSS</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="card" id="interests">
+            <h2 class="card-header">Interests</h2>
+            <div class="card-body badge-container">
+                <span class="badge">Gaming</span>
+                <span class="badge">Coding</span>
+                <span class="badge">Video Editing</span>
+                <span class="badge">Sketching</span>
+                <span class="badge">Tech Community</span>
+            </div>
+        </section>
+
+        <section class="card digital-card" id="contact">
+            <h2 class="card-header">Digital Visiting Card</h2>
+            <div class="card-body">
+                <p class="text-content" style="color: var(--text-muted);">
+                    Always open to discussing web development, OOP concepts, or sharingtips! Let's connect.
+                </p>
+                <div class="contact-links">
+                    <a href="tempmail@example.com" class="contact-btn">
+                        📧 Email Me
+                    </a>
+                    <a href="https://github.com/Nexus-hiraK/first" target="_blank" class="contact-btn">
+                        💻 GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/hirakjyoti-kakaty-305319428?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                        target="_blank" class="contact-btn">
+                        💼 LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const connectBtn = document.getElementById('connectBtn');
+            
+            if(connectBtn) {
+                connectBtn.addEventListener('click', function() {
+                    if (this.innerText === 'Connect') {
+                        this.innerText = 'Pending...';
+                        this.style.backgroundColor = '#666666';
+                        
+                        setTimeout(() => {
+                            this.innerText = 'Connected';
+                            this.style.backgroundColor = '#057642';
+                        }, 1500);
+                    } else {
+                        this.innerText = 'Connect';
+                        this.style.backgroundColor = 'var(--primary-blue)';
+                    }
+                });
+            }
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 70;
+                        
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
